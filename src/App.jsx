@@ -3,7 +3,7 @@ import phongkhamApi from "./api/phongkhamApi";
 import PhongKhamItem from "./components/PhongKhamItem";
 import logo from "./vendor/img/logo.png";
 import logo_timbs from "./vendor/img/Logo_TimBS_W.png";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 function App() {
   const inputRef = useRef(null);
@@ -27,7 +27,7 @@ function App() {
   };
   return (
     <>
-      <div className="header">
+      <div className="logo">
         <Row>
           <Col sm={4}>
             <img src={logo} alt="tpsoft-logo" />
@@ -35,16 +35,16 @@ function App() {
         </Row>
       </div>
 
-      <div className="relative bg-[url('src/vendor/img/bgdoctor.jpg')] h-[200px] bg-center">
-        <div className="absolute bg-center flex flex-col items-center justify-center w-[100%] h-[100%]">
+      <div className="header">
+        <div className="title">
           <img src={logo_timbs} alt="" />
-          <div className="relative mt-4">
-            <form onSubmit={searchpk}>
-              <input
+          <div className="title_child">
+            <Form onSubmit={searchpk}>
+              <Form.Control
                 onChange={(e) => setSearchkey(e.target.value)}
                 ref={inputRef}
                 type="text"
-                className="input_search_home w-[800px]"
+                className="search_input"
                 placeholder="Tìm Bác sĩ/Phòng khám/Chuyên khoa"
               />
               <button
@@ -53,7 +53,7 @@ function App() {
               >
                 Tìm
               </button>
-            </form>
+            </Form>
           </div>
         </div>
       </div>
