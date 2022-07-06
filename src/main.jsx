@@ -1,10 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./vendor/css/index.css";
+import "./vendor/css/style.css";
+import "react-datepicker/dist/react-datepicker.css";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import createSageMiddleware from "redux-saga";
+import reducers from "./redux/reducers";
+import mySaga from "./redux/sagas";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+const sagaMiddleware = createSageMiddleware();
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+sagaMiddleware.run(mySaga);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
-)
+  </Provider>
+);
