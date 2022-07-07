@@ -3,7 +3,7 @@ import phongkhamApi from "./api/phongkhamApi";
 import PhongKhamItem from "./components/PhongKhamItem";
 import logo from "./vendor/img/logo.png";
 import logo_timbs from "./vendor/img/Logo_TimBS_W.png";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form, Container } from "react-bootstrap";
 
 function App() {
   const inputRef = useRef(null);
@@ -57,7 +57,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto">
+      <Container>
         {phongkham.map((pk_item, key) => (
           <PhongKhamItem
             key={key}
@@ -67,7 +67,7 @@ function App() {
             diachi={pk_item.diachi}
           />
         ))}
-      </div>
+      </Container>
     </>
   );
 }

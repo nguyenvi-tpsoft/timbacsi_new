@@ -40,19 +40,20 @@ export default function PhongKhamItem({ msdv, tendv, tendaidien, diachi }) {
   }, [dispatch, data_phongkham, data_giokham]);
   return (
     <>
-      <div className="flex items-center justify-between rounded-xl my-8 shadow-xl shadow-[#cccfd2] bg-white border-l-[10px] border-[#cccfd2]">
-        <div className="flex flex-col items-start justify-start py-3 px-4">
-          <h2 className="font-roboto_bold text-[#175201]">{tendv}</h2>
-          <h2 className="font-roboto_regular">{tendaidien}</h2>
+      <div className="phongkham_item">
+        <div className="left_item">
+          <h2 className="tendv">{tendv}</h2>
+          <h2 className="tendaidien">{tendaidien}</h2>
           <h3>{diachi}</h3>
-          <div className="flex justify-start items-center">
+          <div className="map_item">
             <img src={map_img} alt="" />
             <p>Chỉ đường</p>
           </div>
         </div>
         <button
+          type="button"
           onClick={openCreatePostModal}
-          className="bg-[#4A8E31] h-[50px] w-[150px] text-white rounded-l-3xl"
+          className="phongkham_btn"
         >
           Đặt lịch khám
         </button>

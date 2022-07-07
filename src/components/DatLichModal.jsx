@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
 import benhnhanApi from "../api/benhnhanApi";
+import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 import { createGiokham, hideModal } from "../redux/actions";
 import {
   giokhamState$,
@@ -151,258 +152,229 @@ export default function DatLichModal() {
   };
   return (
     <>
-      {isShow ? (
-        <div
-          className="modal fade fixed top-0 left-0 w-full h-full outline-none overflow-x-hidden overflow-y-auto show bg-[#0504047a]"
-          id="modal_datlich"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabIndex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog relative w-auto pointer-events-none">
-            <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-              {/* Header Modal */}
-              <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-                <div>
-                  <h5
-                    className="text-xl font-roboto_medium leading-normal text-red-600"
-                    id="exampleModalLabel"
-                  >
-                    {phongkham_info.tendv}
-                  </h5>
-                  <h5
-                    className="text-lg font-roboto_medium leading-normal text-green-700"
-                    id="exampleModalLabel"
-                  >
-                    {phongkham_info.tendaidien}
-                  </h5>
-                </div>
-                <button
-                  onClick={onClose}
-                  type="button"
-                  className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-
-              {/* Body Modal */}
-              <div className="modal-body relative p-4 bg-[#80808038]">
-                {/* Group Info */}
-                <div className="bg-white rounded-md p-2">
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Điện thoại</p>
-                    </div>
-                    <div className="col-span-9">
-                      <input
-                        value={dienthoai}
-                        onChange={searchbenhnhanHandle}
-                        type="text"
-                        className="form-control font-roboto_medium focus:shadow-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Họ tên</p>
-                    </div>
-                    <div className="col-span-9">
-                      <input
-                        value={hoten}
-                        onChange={(e) => setHoten(e.target.value)}
-                        type="text"
-                        className="form-control font-roboto_medium uppercase focus:shadow-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Ngày sinh</p>
-                    </div>
-                    <div className="col-span-9">
-                      <DatePicker
-                        onChange={(date) => setNgaysinh(date)}
-                        id="ngay"
-                        dateFormat="dd/MM/yyyy"
-                        locale="vi"
-                        className="form-control font-roboto_medium focus:shadow-none"
-                        selected={ngaysinh}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Giới tính</p>
-                    </div>
-                    <div className="col-span-9">
-                      <div className="flex justify-start items-center">
-                        <div className="flex items-center">
-                          <input
-                            checked={gioitinh == "NAM"}
-                            onChange={(e) => setGioitinh(e.target.value)}
-                            className="form-check-input appearance-none rounded-full h-5 w-5 border border-gray-700 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                            type="radio"
-                            name="inlineRadioOptions"
-                            id="inlineRadio1"
-                            value="NAM"
-                          />
-                          <label
-                            className="ml-2 mr-4 font-roboto_medium py-[6px]"
-                            htmlFor="inlineRadio10"
-                          >
-                            Nam
-                          </label>
-                        </div>
-                        <div className="flex items-center">
-                          <input
-                            checked={gioitinh == "NỮ"}
-                            onChange={(e) => setGioitinh(e.target.value)}
-                            className="form-check-input appearance-none rounded-full h-5 w-5 border border-gray-700 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer"
-                            type="radio"
-                            name="inlineRadioOptions"
-                            id="inlineRadio2"
-                            value="NỮ"
-                          />
-                          <label
-                            className="ml-2 mr-4 font-roboto_medium py-[6px]"
-                            htmlFor="inlineRadio20"
-                          >
-                            Nữ
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Địa chỉ</p>
-                    </div>
-                    <div className="col-span-9">
-                      <input
-                        value={diachi}
-                        onChange={(e) => setDiachi(e.target.value)}
-                        type="text"
-                        className="form-control font-roboto_medium uppercase focus:shadow-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Group ngày đặt */}
-                <div className="bg-white rounded-md p-2 mt-2">
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Triệu chứng</p>
-                    </div>
-                    <div className="col-span-9">
-                      <input
-                        value={trieuchung}
-                        onChange={(e) => setTrieuchung(e.target.value)}
-                        type="text"
-                        className="form-control font-roboto_medium uppercase focus:shadow-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]">Ngày khám</p>
-                    </div>
-                    <div className="col-span-9">
-                      <DatePicker
-                        onChange={(date) => change_date(date)}
-                        id="ngay"
-                        dateFormat="dd/MM/yyyy"
-                        locale="vi"
-                        minDate={new Date()}
-                        className="form-control font-roboto_medium focus:shadow-none"
-                        selected={ngaydat}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 my-1">
-                    <div className="col-span-3">
-                      <p className="text-right mr-4 mt-[5px]"></p>
-                    </div>
-                    <div className="col-span-9">
-                      <ul>
-                        <li
-                          onClick={(e) => setMabuoiselect("SA")}
-                          className={
-                            (giokhamsang ? "" : "hidden ") +
-                            (mabuoiselect == "SA"
-                              ? "bg-[#059817] "
-                              : "bg-[#E9E9E9] ") +
-                            "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
-                          }
-                        >
-                          <div className="flex items-center">
-                            <p className="mr-2">Sáng</p>
-                            <p>{giokhamsang}</p>
-                          </div>
-                          <p>{soluongsang}</p>
-                        </li>
-                        <li
-                          onClick={(e) => setMabuoiselect("TR")}
-                          className={
-                            (giokhamtrua ? "" : "hidden ") +
-                            (mabuoiselect == "TR"
-                              ? "bg-[#059817] "
-                              : "bg-[#E9E9E9] ") +
-                            "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
-                          }
-                        >
-                          <div className="flex items-center">
-                            <p className="mr-2">Trưa</p>
-                            <p>{giokhamtrua}</p>
-                          </div>
-                          <p>{soluongtrua}</p>
-                        </li>
-                        <li
-                          onClick={(e) => setMabuoiselect("CH")}
-                          className={
-                            (giokhamchieu ? "" : "hidden ") +
-                            (mabuoiselect == "CH"
-                              ? "bg-[#059817] "
-                              : "bg-[#E9E9E9] ") +
-                            "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
-                          }
-                        >
-                          <div className="flex items-center">
-                            <p className="mr-2">Chiều</p>
-                            <p>{giokhamchieu}</p>
-                          </div>
-                          <p>{soluongchieu}</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Footer Modal */}
-              <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-                <button
-                  onClick={onClose}
-                  type="button"
-                  className="btn-light font-roboto_medium"
-                >
-                  Hủy
-                </button>
-                <button
-                  type="button"
-                  className="btn-primary font-roboto_medium ml-2"
-                >
-                  Đặt lịch
-                </button>
-              </div>
+      <Modal
+        className="phongkham_modal"
+        show={isShow}
+        onHide={onClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton className="modal_header">
+          <Modal.Title>
+            <div>
+              <h5 className="tendv">{phongkham_info.tendv}</h5>
+              <h5 className="tenbs">{phongkham_info.tendaidien}</h5>
             </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modal_body">
+          {/* Group Info */}
+          <div className="group_info ">
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Điện thoại</p>
+                </Col>
+                <Col sm={9}>
+                  <Form.Control
+                    value={dienthoai}
+                    onChange={searchbenhnhanHandle}
+                    type="text"
+                    className="form-control font-roboto_medium focus:shadow-none"
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Họ tên</p>
+                </Col>
+                <Col sm={9}>
+                  <Form.Control
+                    value={hoten}
+                    onChange={(e) => setHoten(e.target.value)}
+                    type="text"
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Ngày sinh</p>
+                </Col>
+                <Col sm={9}>
+                  <DatePicker
+                    onChange={(date) => setNgaysinh(date)}
+                    id="ngay"
+                    dateFormat="dd/MM/yyyy"
+                    locale="vi"
+                    className="form-control font-roboto_medium focus:shadow-none"
+                    selected={ngaysinh}
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Giới tính</p>
+                </Col>
+                <Col sm={9}>
+                  <div className="gioitinh flex justify-start items-center">
+                    <div className="item">
+                      <input
+                        checked={gioitinh == "NAM"}
+                        onChange={(e) => setGioitinh(e.target.value)}
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="gioitinh_label"
+                        value="NAM"
+                      />
+                      <label htmlFor="gioitinh_label">Nam</label>
+                    </div>
+                    <div className="item">
+                      <input
+                        checked={gioitinh == "NỮ"}
+                        onChange={(e) => setGioitinh(e.target.value)}
+                        type="radio"
+                        name="inlineRadioOptions"
+                        id="gioitinh_label"
+                        value="NỮ"
+                      />
+                      <label htmlFor="gioitinh_label">Nữ</label>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Địa chỉ</p>
+                </Col>
+                <Col sm={9}>
+                  <Form.Control
+                    value={diachi}
+                    onChange={(e) => setDiachi(e.target.value)}
+                    type="text"
+                  />
+                </Col>
+              </Row>
+            </Col>
           </div>
-        </div>
-      ) : null}
+
+          {/* Group ngày đặt */}
+          <div className="group_ngaygio">
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Triệu chứng</p>
+                </Col>
+                <Col sm={9}>
+                  <Form.Control
+                    value={trieuchung}
+                    onChange={(e) => setTrieuchung(e.target.value)}
+                    type="text"
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]">Ngày khám</p>
+                </Col>
+                <Col sm={9}>
+                  <DatePicker
+                    onChange={(date) => change_date(date)}
+                    id="ngay"
+                    dateFormat="dd/MM/yyyy"
+                    locale="vi"
+                    minDate={new Date()}
+                    className="form-control font-roboto_medium focus:shadow-none"
+                    selected={ngaydat}
+                  />
+                </Col>
+              </Row>
+            </Col>
+            <Col sm={12}>
+              <Row>
+                <Col sm={3}>
+                  <p className="text-right mr-4 mt-[5px]"></p>
+                </Col>
+                <Col sm={9}>
+                  <ul className="khunggio_ul">
+                    <li
+                      onClick={(e) => setMabuoiselect("SA")}
+                      className={
+                        (giokhamsang ? "" : "hidden ") +
+                        (mabuoiselect == "SA"
+                          ? "bg-[#059817] "
+                          : "bg-[#E9E9E9] ") +
+                        "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
+                      }
+                    >
+                      <div className="flex items-center">
+                        <p className="mr-2">Sáng</p>
+                        <p>{giokhamsang}</p>
+                      </div>
+                      <p>{soluongsang}</p>
+                    </li>
+                    <li
+                      onClick={(e) => setMabuoiselect("TR")}
+                      className={
+                        (giokhamtrua ? "" : "hidden ") +
+                        (mabuoiselect == "TR"
+                          ? "bg-[#059817] "
+                          : "bg-[#E9E9E9] ") +
+                        "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
+                      }
+                    >
+                      <div className="flex items-center">
+                        <p className="mr-2">Trưa</p>
+                        <p>{giokhamtrua}</p>
+                      </div>
+                      <p>{soluongtrua}</p>
+                    </li>
+                    <li
+                      onClick={(e) => setMabuoiselect("CH")}
+                      className={
+                        (giokhamchieu ? "" : "hidden ") +
+                        (mabuoiselect == "CH"
+                          ? "bg-[#059817] "
+                          : "bg-[#E9E9E9] ") +
+                        "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
+                      }
+                    >
+                      <div className="flex items-center">
+                        <p className="mr-2">Chiều</p>
+                        <p>{giokhamchieu}</p>
+                      </div>
+                      <p>{soluongchieu}</p>
+                    </li>
+                  </ul>
+                </Col>
+              </Row>
+              <div className="col-span-9"></div>
+            </Col>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            onClick={onClose}
+            type="button"
+            className="btn-light font-roboto_medium"
+          >
+            Hủy
+          </Button>
+          <Button type="button" className="btn-primary font-roboto_medium ml-2">
+            Đặt lịch
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
