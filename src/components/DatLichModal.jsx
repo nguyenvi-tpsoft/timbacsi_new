@@ -173,14 +173,14 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]">Điện thoại</p>
+                  <p>Điện thoại</p>
                 </Col>
                 <Col sm={9}>
                   <Form.Control
                     value={dienthoai}
                     onChange={searchbenhnhanHandle}
                     type="text"
-                    className="form-control font-roboto_medium focus:shadow-none"
+                    className="form-control"
                   />
                 </Col>
               </Row>
@@ -188,7 +188,7 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]">Họ tên</p>
+                  <p>Họ tên</p>
                 </Col>
                 <Col sm={9}>
                   <Form.Control
@@ -202,7 +202,7 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]">Ngày sinh</p>
+                  <p>Ngày sinh</p>
                 </Col>
                 <Col sm={9}>
                   <DatePicker
@@ -210,7 +210,7 @@ export default function DatLichModal() {
                     id="ngay"
                     dateFormat="dd/MM/yyyy"
                     locale="vi"
-                    className="form-control font-roboto_medium focus:shadow-none"
+                    className="form-control"
                     selected={ngaysinh}
                   />
                 </Col>
@@ -219,10 +219,10 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]">Giới tính</p>
+                  <p>Giới tính</p>
                 </Col>
                 <Col sm={9}>
-                  <div className="gioitinh flex justify-start items-center">
+                  <div className="gioitinh">
                     <div className="item">
                       <input
                         checked={gioitinh == "NAM"}
@@ -253,7 +253,7 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]">Địa chỉ</p>
+                  <p>Địa chỉ</p>
                 </Col>
                 <Col sm={9}>
                   <Form.Control
@@ -271,7 +271,7 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]">Triệu chứng</p>
+                  <p>Triệu chứng</p>
                 </Col>
                 <Col sm={9}>
                   <Form.Control
@@ -303,7 +303,7 @@ export default function DatLichModal() {
             <Col sm={12}>
               <Row>
                 <Col sm={3}>
-                  <p className="text-right mr-4 mt-[5px]"></p>
+                  <p></p>
                 </Col>
                 <Col sm={9}>
                   <ul className="khunggio_ul">
@@ -311,14 +311,11 @@ export default function DatLichModal() {
                       onClick={(e) => setMabuoiselect("SA")}
                       className={
                         (giokhamsang ? "" : "hidden ") +
-                        (mabuoiselect == "SA"
-                          ? "bg-[#059817] "
-                          : "bg-[#E9E9E9] ") +
-                        "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
+                        (mabuoiselect == "SA" ? "li_selected" : "")
                       }
                     >
-                      <div className="flex items-center">
-                        <p className="mr-2">Sáng</p>
+                      <div className="time_div">
+                        <p>Sáng</p>
                         <p>{giokhamsang}</p>
                       </div>
                       <p>{soluongsang}</p>
@@ -327,14 +324,11 @@ export default function DatLichModal() {
                       onClick={(e) => setMabuoiselect("TR")}
                       className={
                         (giokhamtrua ? "" : "hidden ") +
-                        (mabuoiselect == "TR"
-                          ? "bg-[#059817] "
-                          : "bg-[#E9E9E9] ") +
-                        "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
+                        (mabuoiselect == "TR" ? "li_selected" : "")
                       }
                     >
-                      <div className="flex items-center">
-                        <p className="mr-2">Trưa</p>
+                      <div className="time_div">
+                        <p>Trưa</p>
                         <p>{giokhamtrua}</p>
                       </div>
                       <p>{soluongtrua}</p>
@@ -343,14 +337,11 @@ export default function DatLichModal() {
                       onClick={(e) => setMabuoiselect("CH")}
                       className={
                         (giokhamchieu ? "" : "hidden ") +
-                        (mabuoiselect == "CH"
-                          ? "bg-[#059817] "
-                          : "bg-[#E9E9E9] ") +
-                        "flex justify-between items-center py-1 px-2 mb-2 rounded-md cursor-pointer"
+                        (mabuoiselect == "CH" ? "li_selected" : "")
                       }
                     >
-                      <div className="flex items-center">
-                        <p className="mr-2">Chiều</p>
+                      <div className="time_div">
+                        <p>Chiều</p>
                         <p>{giokhamchieu}</p>
                       </div>
                       <p>{soluongchieu}</p>
