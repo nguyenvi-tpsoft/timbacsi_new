@@ -145,6 +145,7 @@ ul {
   border-radius: unset;
   border: unset;
   border-bottom: 1px solid #ddd;
+  padding-left: 0;
 }
 .phongkham_modal .modal_body p {
   text-align: right;
