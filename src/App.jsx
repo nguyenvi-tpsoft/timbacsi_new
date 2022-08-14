@@ -47,12 +47,7 @@ function App() {
                 className="search_input"
                 placeholder="Tìm Bác sĩ/Phòng khám/Chuyên khoa"
               />
-              <button
-                type="submit"
-                className="absolute bg-[#e9ecef] py-[6px] px-4 top-0 right-0 rounded-r-2xl"
-              >
-                Tìm
-              </button>
+              <button type="submit">Tìm</button>
             </Form>
           </div>
         </div>

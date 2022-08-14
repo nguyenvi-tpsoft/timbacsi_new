@@ -10,6 +10,11 @@
   font-family: "roboto_bold";
   src: url("../font/Roboto-Bold.ttf") format("truetype");
 }
+
+body,
+html {
+  overflow-x: hidden;
+}
 body {
   font-family: "roboto_regular";
 }
@@ -208,6 +213,19 @@ ul {
           background-color: #059817;
           color: #ffff;
         }
+      }
+    }
+    .danhsachbenhnhan {
+      li {
+        background-color: skyblue;
+        margin: 5px 0;
+        padding: 3px 8px;
+        border-radius: 8px;
+        color: #ffff;
+        font-size: 15px;
+      }
+      &.hidden {
+        display: none;
       }
     }
   }

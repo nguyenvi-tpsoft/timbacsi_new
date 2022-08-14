@@ -8,8 +8,8 @@ export const getType = (reduxAction) => {
 export const createInfoPhongKham = createAction('PUSH_INFO_PHONGKHAM');
 
 
-export const showModal = createAction('SHOW_CREATE_POST_MODAL');
-export const hideModal = createAction('HIDE_CREATE_POST_MODAL');
+export const showModal = createAction('SHOW_MODAL');
+export const hideModal = createAction('HIDE_MODAL');
 
 //todo giờ khám
 export const createGiokham = createActions({

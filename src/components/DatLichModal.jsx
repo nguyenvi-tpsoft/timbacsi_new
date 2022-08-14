@@ -70,8 +70,12 @@ export default function DatLichModal() {
 
   const [mabuoiselect, setMabuoiselect] = useState("");
   const [giokhamselect, setGiokhamselect] = useState("");
+  const [danhsachbenhnhan, setDanhsachbenhnhan] = useState([]);
+  const [danhsachbenhnhan_hidden, setDanhsachbenhnhan_hidden] =
+    useState("hidden");
 
   const searchbenhnhanHandle = async (e) => {
+    setDanhsachbenhnhan_hidden("hidden");
     setDienthoai(e.target.value);
     if (e.target.value.length > 9 && e.target.value.length < 12) {
       try {
@@ -83,6 +87,7 @@ export default function DatLichModal() {
         const data_benhnhan = response.data;
         switch (data_benhnhan.length) {
           case 0:
+            setDanhsachbenhnhan_hidden("");
             break;
           case 1:
             setMsbn(data_benhnhan[0].msbn);
@@ -93,6 +98,8 @@ export default function DatLichModal() {
             break;
 
           default:
+            setDanhsachbenhnhan(data_benhnhan);
+            setDanhsachbenhnhan_hidden("");
             break;
         }
       } catch (error) {}
@@ -182,6 +189,13 @@ export default function DatLichModal() {
                     type="text"
                     className="form-control"
                   />
+                  <ul className={"danhsachbenhnhan " + danhsachbenhnhan_hidden}>
+                    {danhsachbenhnhan.map((dsbn, key) => (
+                      <li key={key} msbn={dsbn.msbn}>
+                        {dsbn.hoten}
+                      </li>
+                    ))}
+                  </ul>
                 </Col>
               </Row>
             </Col>

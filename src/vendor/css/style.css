@@ -10,6 +10,11 @@
   font-family: "roboto_bold";
   src: url("../font/Roboto-Bold.ttf") format("truetype");
 }
+body,
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "roboto_regular";
 }
@@ -206,4 +211,15 @@ ul {
 .phongkham_modal .modal_body .group_ngaygio .khunggio_ul .li_selected {
   background-color: #059817;
   color: white;
+}
+.phongkham_modal .modal_body .danhsachbenhnhan li {
+  background-color: skyblue;
+  margin: 5px 0;
+  padding: 3px 8px;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px;
+}
+.phongkham_modal .modal_body .danhsachbenhnhan.hidden {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
